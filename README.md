@@ -14,6 +14,7 @@ file manually if needed.
 
 Specifies the directory for datapacks that should automatically load as **enabled**.
 
+- Defaults to `datapacks`
 - Overridden by `initial-disabled-packs` for servers.
 
 ### `disabled`: `string` <sup>optional</sup>
