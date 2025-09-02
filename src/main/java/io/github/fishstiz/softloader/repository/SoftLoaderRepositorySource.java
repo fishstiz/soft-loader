@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SoftLoaderRepositorySource extends FolderRepositorySource {
+    public static final int CHAT_COLOR = 0xFFFEE085; // yellow
     public static final PackSource PACK_SOURCE_ENABLED = createPackSource(true);
     public static final PackSource PACK_SOURCE_DISABLED = createPackSource(false);
 
@@ -21,7 +22,7 @@ public class SoftLoaderRepositorySource extends FolderRepositorySource {
 
     private static PackSource createPackSource(boolean shouldEnableAutomatically) {
         return PackSource.create(
-                description -> Component.translatable("pack.nameAndSource", description, SoftLoader.MOD_ID),
+                description -> Component.translatable("pack.nameAndSource", description, SoftLoader.MOD_ID).withColor(CHAT_COLOR),
                 shouldEnableAutomatically
         );
     }
