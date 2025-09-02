@@ -7,8 +7,8 @@ optional.
 
 ## Configuration
 
-Upon launching the game, the Soft Loader config will be created at `config/soft_loader.json`. You may also create this
-file manually.
+The Soft Loader config will be created at `config/soft_loader.json` upon creating a world. You may also create this
+file manually if needed.
 
 ### `enabled`: `string` <sup>optional</sup>
 
@@ -21,6 +21,7 @@ Specifies the directory for datapacks that should automatically load as **enable
 Specifies the directory for datapacks that should automatically load as **disabled**.
 
 - Overridden by `initial-enabled-packs` for servers.
+- Overridden by `loadOrder` if a pack is listed there.
 
 ### `loadOrder`: `string[]` <sup>optional</sup>
 

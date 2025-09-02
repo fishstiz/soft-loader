@@ -8,7 +8,6 @@ import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.server.packs.repository.RepositorySource;
 import net.minecraft.world.level.WorldDataConfiguration;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -16,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Debug(export = true)
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin {
     @ModifyArg(method = "openFresh", at = @At(
