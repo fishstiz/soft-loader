@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "soft_loader",
+  "version": "${version}",
+  "name": "Soft Loader",
+  "description": "Automatically load datapacks softly.",
+  "authors": [
+    "fishstiz"
+  ],
+  "license": "MIT",
+  "icon": "assets/softloader/icon.png",
+  "environment": "*",
+  "mixins": [
+    "soft_loader.mixins.json"
+  ],
+  "accessidener": "soft_loader.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
