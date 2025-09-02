@@ -16,7 +16,7 @@
   "accessidener": "soft_loader.accesswidener",
   "depends": {
     "fabricloader": ">=0.17.2",
-    "minecraft": "~1.21.1",
+    "minecraft": ">=1.21.2",
     "java": ">=21"
   },
   "suggests": {
