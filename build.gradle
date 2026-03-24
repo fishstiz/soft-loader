@@ -1,6 +1,6 @@
 plugins {
 	id 'fabric-loom' version "${loom_version}"
-	id 'maven-publish'
+	id 'me.modmuss50.mod-publish-plugin' version "$mod_publish_version"
 }
 
 version = project.mod_version
@@ -60,6 +60,8 @@ tasks.withType(JavaCompile).configureEach {
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
+
+	withSourcesJar()
 }
 
 jar {
@@ -67,5 +69,34 @@ jar {
 
 	from("LICENSE") {
 		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+publishMods {
+	dryRun = false
+	version = this.version
+	type = STABLE
+	changelog = file('CHANGELOG.md').text
+	file = remapJar.archiveFile
+	additionalFiles.from(sourcesJar.archiveFile)
+
+	github {
+		accessToken = findProperty("GITHUB_TOKEN") ?: ''
+		repository = "fishstiz/soft-loader"
+		commitish = "$minecraft_version"
+		tagName = "v${mod_version}"
+		displayName = "v${mod_version}"
+	}
+
+	modrinth {
+		accessToken = findProperty("MODRINTH_TOKEN") ?: ''
+		projectId = modrinth_id
+		minecraftVersions.add(minecraft_version)
+	}
+
+	curseforge {
+		accessToken = findProperty("CURSEFORGE_TOKEN") ?: ''
+		projectId = curseforge_id
+		minecraftVersions.add(minecraft_version)
 	}
 }
