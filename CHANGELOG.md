@@ -1,1 +1,1 @@
-- Port to 1.21.9-1.21.11 ([#1](https://github.com/fishstiz/soft-loader/issues/1))
+- Port to 26.1-rc-3

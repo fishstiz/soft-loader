@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'me.modmuss50.mod-publish-plugin' version "$mod_publish_version"
 }
 
@@ -20,14 +20,13 @@ repositories {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	modLocalRuntime "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	localRuntime "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${archives_base_name}.accesswidener")
+    accessWidenerPath = file("src/main/resources/${archives_base_name}.classTweaker")
 
     runs {
         client {
@@ -54,12 +53,11 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = java_version.toInteger()
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 
 	withSourcesJar()
 }
@@ -77,13 +75,13 @@ publishMods {
 	version = this.version
 	type = STABLE
 	changelog = file('CHANGELOG.md').text
-	file = remapJar.archiveFile
+	file = jar.archiveFile
 	additionalFiles.from(sourcesJar.archiveFile)
 
 	github {
 		accessToken = findProperty("GITHUB_TOKEN") ?: ''
 		repository = "fishstiz/soft-loader"
-		commitish = "$minecraft_version"
+		commitish = "26.1"
 		tagName = "v${mod_version}"
 		displayName = "v${mod_version}"
 	}
@@ -92,14 +90,14 @@ publishMods {
 		accessToken = findProperty("MODRINTH_TOKEN") ?: ''
 		projectId = modrinth_id
 		modLoaders.add("fabric")
-		minecraftVersions.addAll(minecraft_version, "1.21.10", "1.21.11")
+		minecraftVersions.addAll(minecraft_version)
 	}
 
 	curseforge {
 		accessToken = findProperty("CURSEFORGE_TOKEN") ?: ''
 		projectId = curseforge_id
 		modLoaders.add("fabric")
-		minecraftVersions.addAll(minecraft_version, "1.21.10", "1.21.11")
+		minecraftVersions.addAll("26.1-snapshot")
 		clientRequired = true
 	}
 }
