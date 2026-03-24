@@ -17,7 +17,7 @@ import java.util.Set;
 
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin {
-    @ModifyArg(method = "openFresh", at = @At(
+    @ModifyArg(method = "openCreateWorldScreen", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;createDefaultLoadConfig(Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)Lnet/minecraft/server/WorldLoader$InitConfig;"
     ))
@@ -29,7 +29,7 @@ public abstract class CreateWorldScreenMixin {
         return packRepository;
     }
 
-    @ModifyArg(method = "openFresh", at = @At(
+    @ModifyArg(method = "openCreateWorldScreen", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;createDefaultLoadConfig(Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)Lnet/minecraft/server/WorldLoader$InitConfig;"
     ))
