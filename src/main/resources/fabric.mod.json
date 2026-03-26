@@ -13,7 +13,7 @@
   "mixins": [
     "soft_loader.mixins.json"
   ],
-  "accessidener": "soft_loader.accesswidener",
+  "accessidener": "soft_loader.classTweaker",
   "depends": {
     "fabricloader": ">=0.18.4",
     "minecraft": ">=26.1-rc.3",
